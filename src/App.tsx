@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+// import { Simulation, LineChart, range } from '@mpaulprojects/dominion-sim-chart';
 import { Simulation, LineChart, range } from './lib';
 
 const exampleSim = [{
@@ -72,7 +73,17 @@ function App() {
 
   if (!sim) { return <div>loading...</div>; }
   return (
-    <LineChart sim={sim} />
+    <div style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      padding: '2rem',
+      boxSizing: 'border-box',
+    }}>
+      <LineChart data={sim} />
+    </div>
   );
 }
 

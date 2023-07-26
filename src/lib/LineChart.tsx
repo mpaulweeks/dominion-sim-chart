@@ -23,12 +23,13 @@ const nextColor = (() => {
 })();
 
 export function LineChart(props: {
-  sim: Simulation;
+  data: Simulation;
+  style?: React.CSSProperties;
 }) {
-  const summaries = props.sim.decks.map(d => d.summary);
+  const summaries = props.data.decks.map(d => d.summary);
   const maxTurn = Math.max(...summaries.map(s => s.turns.length));
   const data = range(maxTurn).map(i => {
-    const deckDatas = props.sim.decks.map(d => {
+    const deckDatas = props.data.decks.map(d => {
       return {
         [`${d.label} Money`]: d.summary.turns[i]?.avgMoney,
         [`${d.label} VP`]: d.summary.turns[i]?.avgVpTotal, // todo 2nd graph?
@@ -40,18 +41,20 @@ export function LineChart(props: {
     };
   });
   return (
-    <rc.LineChart width={800} height={600} data={data}>
-      <rc.CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
-      <rc.XAxis dataKey="name"/>
-      <rc.YAxis/>
-      <rc.Tooltip />
-      <rc.Legend />
-      {props.sim.decks.map(d => {
-        const key = `${d.label} Money`;
-        return (
-          <rc.Line key={key} type="monotone" dataKey={key} stroke={nextColor()} />
-        );
-      })}
-    </rc.LineChart>
+    <rc.ResponsiveContainer>
+      <rc.LineChart data={data} style={props.style}>
+        <rc.CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
+        <rc.XAxis dataKey="name"/>
+        <rc.YAxis/>
+        <rc.Tooltip />
+        <rc.Legend />
+        {props.data.decks.map(d => {
+          const key = `${d.label} Money`;
+          return (
+            <rc.Line key={key} type="monotone" dataKey={key} stroke={nextColor()} />
+          );
+        })}
+      </rc.LineChart>
+    </rc.ResponsiveContainer>
   );
 }

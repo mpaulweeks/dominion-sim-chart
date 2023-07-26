@@ -2,11 +2,10 @@
 
 React components for visualizing Dominion sim data
 
-- https://storybook.js.org/docs/react/get-started/install/
+## Example Usage
 
-## Deploy
+```tsx
+import { LineChart } from '@mpaulprojects/dominion-sim-chart';
 
-```bash
-npm version patch
-npm publish
+<LineChart data={data} />;
 ```
