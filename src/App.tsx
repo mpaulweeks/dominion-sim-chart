@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { Simulation } from './types'
-import { LineChart } from './comp/LineChart';
+import { LineChart } from './lib';
 import { range } from './util';
 
 const exampleSim = [{
@@ -31,7 +31,7 @@ const exampleSim = [{
   label: "Chapel Engine",
   shoppingList: [
     { card: "chapel", quantity: 1, },
-    ...range(6).map(i => [
+    ...range(6).map(() => [
       { card: "festival", quantity: 1, },
       { card: "smithy", quantity: 1, },
     ]).flat(),
