@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/lib/index.ts'),
       name: 'Dominion Sim Chart',
-      fileName: (format) => `dominion-sim-chart.${format}.js`
+      fileName: `index`,
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
