@@ -1,5 +1,8 @@
 {
-  "name": "@mpaulweeks/dominion-sim-chart",
+  "name": "@mpaulprojects/dominion-sim-chart",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.2",
   "author": "mpaulweeks",
   "license": "MIT",
@@ -20,7 +23,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preversion": "npm run build",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "react": "^18.2.0",
