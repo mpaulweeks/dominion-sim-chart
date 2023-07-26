@@ -1,6 +1,6 @@
 {
-  "name": "dominion-sim-chart",
-  "version": "0.1",
+  "name": "@mpaulweeks/dominion-sim-chart",
+  "version": "0.0.1",
   "author": "mpaulweeks",
   "license": "MIT",
   "type": "module",
