@@ -11,12 +11,12 @@
     "dist",
     "README.md"
   ],
-  "main": "./dist/dominion-sim-chart.umd.js",
-  "module": "./dist/dominion-sim-chart.es.js",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/dominion-sim-chart.es.js",
-      "require": "./dist/dominion-sim-chart.umd.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.js"
     }
   },
   "scripts": {
