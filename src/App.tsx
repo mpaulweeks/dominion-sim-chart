@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { Simulation } from './types'
+import { Simulation } from './lib/types'
 import { LineChart } from './lib';
-import { range } from './util';
+import { range } from './lib/util';
 
 const exampleSim = [{
   label: "BM",

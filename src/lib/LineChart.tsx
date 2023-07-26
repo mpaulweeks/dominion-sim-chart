@@ -1,6 +1,6 @@
 import * as rc from 'recharts';
-import { Simulation } from "../types";
-import { range } from '../util';
+import { Simulation } from "./types";
+import { range } from './util';
 
 const nextColor = (() => {
   let index = -1;
