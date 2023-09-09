@@ -1,3 +1,13 @@
+export type Strategy = {
+  label: string;
+  shoppingList: BuyOrder[];
+}
+
+export type SimulationConfig = {
+  games: number;
+  strategies: Strategy[];
+};
+
 export type Simulation = {
   decks: DeckSim[];
 }
@@ -19,4 +29,9 @@ export type TurnSummary = {
   records: number;
   avgMoney: number;
   avgVpTotal: number;
+}
+
+export enum ChartType {
+  TotalVP = 1,
+  MoneyPerTurn
 }
