@@ -1,9 +1,8 @@
 import * as rc from 'recharts';
-import { Simulation } from "./types";
+import { ChartType, Simulation } from "./types";
 import { range } from './util';
 
-const nextColor = (() => {
-  let index = -1;
+function getColor(index: number): string {
   const palette = [
     {"name":"Imperial red","hex":"f94144","rgb":[249,65,68],"cmyk":[0,74,73,2],"hsb":[359,74,98],"hsl":[359,94,62],"lab":[56,69,41]},
     {"name":"Orange (Crayola)","hex":"f3722c","rgb":[243,114,44],"cmyk":[0,53,82,5],"hsb":[21,82,95],"hsl":[21,89,56],"lab":[63,46,59]},
@@ -16,14 +15,12 @@ const nextColor = (() => {
     {"name":"Payne's gray","hex":"577590","rgb":[87,117,144],"cmyk":[40,19,0,44],"hsb":[208,40,56],"hsl":[208,25,45],"lab":[48,-4,-18]},
     {"name":"Cerulean","hex":"277da1","rgb":[39,125,161],"cmyk":[76,22,0,37],"hsb":[198,76,63],"hsl":[198,61,39],"lab":[49,-13,-27]}
   ].map(c => `#${c.hex}`);
-  return () => {
-    index += 1;
-    return palette[index % palette.length];
-  };
-})();
+  return palette[(index * 7) % palette.length];
+}
 
 export function LineChart(props: {
   data: Simulation;
+  chartType: ChartType;
   style?: React.CSSProperties;
 }) {
   const summaries = props.data.decks.map(d => d.summary);
@@ -36,7 +33,7 @@ export function LineChart(props: {
       };
     });
     return {
-      name: `Turn ${i + 1}`,
+      name: i + 1,
       ...Object.assign({}, ...deckDatas),
     };
   });
@@ -45,13 +42,16 @@ export function LineChart(props: {
       <rc.LineChart data={data} style={props.style}>
         <rc.CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
         <rc.XAxis dataKey="name"/>
-        <rc.YAxis/>
+        <rc.YAxis />
         <rc.Tooltip />
         <rc.Legend />
-        {props.data.decks.map(d => {
-          const key = `${d.label} Money`;
+        {props.data.decks.map((d, di) => {
+          const key = {
+            [ChartType.TotalVP]: `${d.label} VP`,
+            [ChartType.MoneyPerTurn]: `${d.label} Money`,
+          }[props.chartType];
           return (
-            <rc.Line key={key} type="monotone" dataKey={key} stroke={nextColor()} />
+            <rc.Line key={key} type="monotone" dataKey={key} stroke={getColor(di)} />
           );
         })}
       </rc.LineChart>
