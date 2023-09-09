@@ -1,4 +1,4 @@
-# dominion-sim-graph
+# dominion-sim-chart
 
 React components for visualizing Dominion sim data
 
